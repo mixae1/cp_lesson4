@@ -1,8 +1,8 @@
 import {MiniMaple} from "../src/miniMaple";
 
 test('it should block a non string type', () => {
-    expect(new MiniMaple("x", "x")._check_variable(123)).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_polynom(123)).toBe(undefined);
+    expect(MiniMaple._check_variable(123)).toBe(undefined);
+    expect(MiniMaple._check_polynom(123)).toBe(undefined);
 });
 
 test('it should block a non string type in constructor', () => {
@@ -17,8 +17,8 @@ test('it should block a non string type in constructor', () => {
 
 
 test('it should block an empty string', () => {
-    expect(new MiniMaple("x", "x")._check_variable("")).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_polynom("")).toBe(undefined);
+    expect(MiniMaple._check_variable("")).toBe(undefined);
+    expect(MiniMaple._check_polynom("")).toBe(undefined);
 });
 
 test('it should block an empty strings in constructor', () => {
@@ -42,38 +42,38 @@ test('it should block an empty string in constructor', () => {
 });
 
 test('it should get a variable correctly', () => {
-    expect(new MiniMaple("x", "x")._check_variable('x')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_variable('y')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_variable('Z')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_variable('a')).toBeTruthy();
+    expect(MiniMaple._check_variable('x')).toBeTruthy();
+    expect(MiniMaple._check_variable('y')).toBeTruthy();
+    expect(MiniMaple._check_variable('Z')).toBeTruthy();
+    expect(MiniMaple._check_variable('a')).toBeTruthy();
 });
 
 test('it should block a wrong variable', () => {
-    expect(new MiniMaple("x", "x")._check_variable('xx')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_variable('+')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_variable('-z')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_variable('x^2')).toBe(undefined);
+    expect(MiniMaple._check_variable('xx')).toBe(undefined);
+    expect(MiniMaple._check_variable('+')).toBe(undefined);
+    expect(MiniMaple._check_variable('-z')).toBe(undefined);
+    expect(MiniMaple._check_variable('x^2')).toBe(undefined);
 });
 
 test('it should parse polynoms correctly', () => {
-    expect(new MiniMaple("x", "x")._check_polynom('x')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_polynom('x^2')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_polynom('4*Z')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_polynom('-2')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_polynom('2')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_polynom('-2*x^123')).toBeTruthy();
-    expect(new MiniMaple("x", "x")._check_polynom('-4*-a^2+g^4-g+5*y^1')).toBeTruthy();
+    expect(MiniMaple._check_polynom('x')).toBeTruthy();
+    expect(MiniMaple._check_polynom('x^2')).toBeTruthy();
+    expect(MiniMaple._check_polynom('4*Z')).toBeTruthy();
+    expect(MiniMaple._check_polynom('-2')).toBeTruthy();
+    expect(MiniMaple._check_polynom('2')).toBeTruthy();
+    expect(MiniMaple._check_polynom('-2*x^123')).toBeTruthy();
+    expect(MiniMaple._check_polynom('-4*-a^2+g^4-g+5*y^1')).toBeTruthy();
 });
 
 test('it should drop out wrong polynoms', () => {
-    expect(new MiniMaple("x", "x")._check_polynom('x*x')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_polynom('4x')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_polynom('x4')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_polynom('--z')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_polynom('&lkegw')).toBe(undefined);    
-    expect(new MiniMaple("x", "x")._check_polynom('xx')).toBe(undefined);    
-    expect(new MiniMaple("x", "x")._check_polynom('y^^2')).toBe(undefined);
-    expect(new MiniMaple("x", "x")._check_polynom('3/2')).toBe(undefined);
+    expect(MiniMaple._check_polynom('x*x')).toBe(undefined);
+    expect(MiniMaple._check_polynom('4x')).toBe(undefined);
+    expect(MiniMaple._check_polynom('x4')).toBe(undefined);
+    expect(MiniMaple._check_polynom('--z')).toBe(undefined);
+    expect(MiniMaple._check_polynom('&lkegw')).toBe(undefined);    
+    expect(MiniMaple._check_polynom('xx')).toBe(undefined);    
+    expect(MiniMaple._check_polynom('y^^2')).toBe(undefined);
+    expect(MiniMaple._check_polynom('3/2')).toBe(undefined);
 });
 
 

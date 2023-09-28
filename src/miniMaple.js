@@ -10,8 +10,8 @@ export class MiniMaple{
     _variable = undefined
     _diffed_polynom = undefined
     constructor(polynom, variable = "x"){
-        if(this._check_polynom(polynom) === undefined || 
-            this._check_variable(variable) === undefined){
+        if(MiniMaple._check_polynom(polynom) === undefined || 
+        MiniMaple._check_variable(variable) === undefined){
                 throw new InvalidArgumentException("invalid arguments");
         }
         this._polynom = polynom
@@ -19,7 +19,7 @@ export class MiniMaple{
         this._diffed_polynom = undefined
     }
 
-    _check_polynom(polynom){
+    static _check_polynom(polynom){
         if(typeof polynom !== 'string') return undefined
         if(polynom.length < 1) return undefined
         for (let i of polynom) {
@@ -28,13 +28,13 @@ export class MiniMaple{
         const dropreg = /([a-zA-Z]\d)|(\d[a-zA-Z])|([a-zA-Z]{2,})/g
         if(dropreg.test(polynom)) return undefined
         const regexp = /((-?\d+\*)?-?[a-zA-Z](\^\d+)?)|(-?\d+)/g
-        const parts = (polynom.match(regexp) || [])
+        const parts = polynom.match(regexp)
         const pluses = (polynom.match(/\+/g) || []).length
         if(("".concat(parts).replaceAll(",", "")).length + pluses !== polynom.length) return undefined
         return true
     }
 
-    _check_variable(variable){
+    static _check_variable(variable){
         if(typeof variable !== 'string') return undefined
         if(variable.length !== 1) return undefined
         if(!"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz".includes(variable)) return undefined
@@ -47,7 +47,7 @@ export class MiniMaple{
         }
         // differencing
         const regexp = /((-?\d+\*)?-?[a-zA-Z](\^\d+)?)|(-?\d+)/g
-        const parts = (this._polynom.match(regexp) || [])
+        const parts = this._polynom.match(regexp)
         let result = ""
         for(let part of parts){
             let { cnst, coef, variable, power } = /^(((?<coef>-?\d+)\*)?(?<variable>-?[a-zA-Z])?(\^(?<power>\d+))?)|(?<cnst>-?\d+)$/.exec(part).groups;

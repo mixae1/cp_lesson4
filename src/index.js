@@ -22,6 +22,4 @@ function ComputeDerivative() {
         alert("Invalid input");
         return;
     }
-    
-    
 }
